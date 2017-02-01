@@ -1,0 +1,24 @@
+{
+  "name": "xin-jwt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reekoheek/xin-jwt.git"
+  },
+  "author": "Ganesha <reekoheek@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reekoheek/xin-jwt/issues"
+  },
+  "homepage": "https://github.com/reekoheek/xin-jwt#readme",
+  "optionalDependencies": {
+    "xin": "github:xinix-technology/xin#next"
+  }
+}
