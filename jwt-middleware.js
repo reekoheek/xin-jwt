@@ -10,6 +10,13 @@ class JwtMiddleware extends Middleware {
         value: () => [ '/login', '/signin' ],
       },
 
+      token: {
+        type: String,
+        notify: true,
+        readonly: true,
+        value: '',
+      },
+
       tokenKey: {
         type: String,
         value: 'jwt-token',
@@ -27,16 +34,21 @@ class JwtMiddleware extends Middleware {
   }
 
   getAuth (ctx) {
-    const token = this.getToken();
-    if (!token) {
+    if (!this.token) {
       throw new Error('Missing auth token');
     }
 
     try {
-      return new Token(token);
+      return new Token(this.token);
     } catch (err) {
       throw new Error('Invalid token');
     }
+  }
+
+  ready () {
+    super.ready();
+
+    this.set('token', window.localStorage[this.tokenKey]);
   }
 
   callback () {
@@ -78,7 +90,10 @@ class JwtMiddleware extends Middleware {
 
     const { token } = await res.json();
 
-    this.setToken(token);
+    this.set('token', token);
+    window.localStorage[this.tokenKey] = token;
+
+    this.fire('signin', { token });
 
     return token;
   }
@@ -88,23 +103,6 @@ class JwtMiddleware extends Middleware {
     delete window.localStorage[this.tokenKey];
 
     this.fire('signout');
-  }
-
-  setToken (token) {
-    this.set('token', token);
-    window.localStorage[this.tokenKey] = token;
-  }
-
-  getToken () {
-    if (this.token) {
-      return this.token;
-    }
-
-    const token = window.localStorage[this.tokenKey];
-    if (token) {
-      this.set('token', token);
-      return token;
-    }
   }
 }
 
