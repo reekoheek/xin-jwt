@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/reekoheek/xin-jwt#readme",
   "optionalDependencies": {
-    "xin": "github:xinix-technology/xin#next"
+    "xin": "github:xinix-technology/xin#2.3.1"
   }
 }
