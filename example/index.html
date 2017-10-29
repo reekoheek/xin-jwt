@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Xin JWT Example</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    xin-pager {
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <xin-app>
+    <template>
+      <xin-jwt id="jwtMiddleware"></xin-jwt>
+
+      <xin-pager>
+        <my-home uri="/"></my-home>
+        <my-login uri="/login"></my-login>
+      </xin-pager>
+    </template>
+  </xin-app>
+</body>
+</html>

@@ -1,6 +1,7 @@
-import xin from 'xin';
-import Middleware from 'xin/components/middleware';
+import { define } from '@xinix/xin';
+import { Middleware } from '@xinix/xin/components';
 import Token from './lib/token';
+import jwt from 'jsonwebtoken';
 
 class JwtMiddleware extends Middleware {
   get props () {
@@ -33,7 +34,7 @@ class JwtMiddleware extends Middleware {
     return this.whitelist.indexOf(uri) > -1;
   }
 
-  getAuth (ctx) {
+  getAuth () {
     if (!this.token) {
       throw new Error('Missing auth token');
     }
@@ -47,25 +48,27 @@ class JwtMiddleware extends Middleware {
 
   ready () {
     super.ready();
-
-    this.set('token', window.localStorage[this.tokenKey]);
+    let token = window.localStorage[this.tokenKey];
+    if (token) {
+      this.token = token;
+    }
   }
 
   callback () {
-    return async (ctx, next) => {
+    return (ctx, next) => {
       if (this.isWhitelisted(ctx)) {
-        return await next();
+        return next();
       }
 
       try {
         this.getAuth(ctx);
       } catch (err) {
-        console.log('err', err);
+        console.error('err', err);
         ctx.app.navigate('/login');
         return;
       }
 
-      return await next();
+      return next();
     };
   }
 
@@ -106,6 +109,6 @@ class JwtMiddleware extends Middleware {
   }
 }
 
-xin.define('jwt-middleware', JwtMiddleware);
+define('xin-jwt', JwtMiddleware);
 
 export default JwtMiddleware;

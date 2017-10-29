@@ -9,7 +9,7 @@ We can use xin-jwt middleware as component inside template scope of App componen
 ```html
 <xin-app>
   <template>
-    <jwt-middleware whitelist='["/login", "/test"]' (signout)='navigate("/login")'></jwt-middleware>
+    <xin-jwt whitelist='["/login", "/test"]' (signout)='navigate("/login")'></xin-jwt>
   </template>
 </xin-app>
 ```
@@ -17,8 +17,8 @@ We can use xin-jwt middleware as component inside template scope of App componen
 Or programmatically
 
 ```javascript
-import App from 'xin/components/app';
-import JwtMiddleware from 'xin-jwt/jwt-middleware';
+import { App } from 'xin/components';
+import JwtMiddleware from 'xin-jwt';
 
 class TheApp extends App {
   created () {
@@ -28,5 +28,5 @@ class TheApp extends App {
   }
 }
 
-xin.define('the-app', TheApp)
+define('the-app', TheApp)
 ```

@@ -1,11 +1,32 @@
 {
   "name": "xin-jwt",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.2.0",
+  "description": "Xin JWT Middleware",
   "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "@xinix/xin": "^2.4.5",
+    "jsonwebtoken": "^8.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.10.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-xinix": "^1.0.4",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.3"
+  },
   "scripts": {
+    "dev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +38,5 @@
   "bugs": {
     "url": "https://github.com/reekoheek/xin-jwt/issues"
   },
-  "homepage": "https://github.com/reekoheek/xin-jwt#readme",
-  "optionalDependencies": {
-    "xin": "github:xinix-technology/xin#2.3.1"
-  }
+  "homepage": "https://github.com/reekoheek/xin-jwt#readme"
 }
